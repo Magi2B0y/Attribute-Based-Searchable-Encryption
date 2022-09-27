@@ -13,3 +13,7 @@
 <p>
 	Add the downloaded folder jpbc-1.2.1.zip(must be the .zip folder)&nbsp;into&nbsp;the source.
 </p>
+
+![](./attachments/1.png)
+
+![](./attachments/2.png)
