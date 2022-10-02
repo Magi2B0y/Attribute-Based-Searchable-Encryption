@@ -1,28 +1,24 @@
 package demo;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
+import java.util.Base64;
 import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Base64.Encoder;
 
 public class EncFile {
     //实验操作路径
-    private static String derectory = "E:\\DeskDocument";
-
-    public static void main(String[] args) {
+    public static void main(String sourcetext) {
         //key： 加密密钥
         String key = createRandomStr(32);
         System.out.println("key:" + key);
         //ivParameter：AES cbc加密模式的iv向量
         String ivParameter = "AAAABBBBCCCCDDDD";
         try {
-            String CipherFile = "ciphertext.txt";
-            File file = new File(derectory + "\\" + "plaintext.txt");
+            String CipherFile = sourcetext.replace("SourceFiles", "UploadFiles");
+            File file = new File(sourcetext);
             encryptfile(file, key, ivParameter, CipherFile);
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,16 +33,23 @@ public class EncFile {
         System.out.println("====PlainText:====\n" + new String(bytIn));
         bis.close();
         // AES加密
-        byte[] raw = key.getBytes("ASCII");
+        byte[] raw = key.getBytes();
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         IvParameterSpec iv = new IvParameterSpec(ivParameterm.getBytes());
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
+
         // 写入CipherFile
         byte[] bytOut = cipher.doFinal(bytIn);
-        File outfile = new File(derectory + "\\" + CipherFile);
+        Encoder encoder = Base64.getEncoder();
+        bytOut = encoder.encode(bytOut);
+        key = key + "\r\n";
+        byte[] BytesKey = key.getBytes("ASCII");
+        bytOut = byteMerger(BytesKey,bytOut);
+
+        File outfile = new File(CipherFile);
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outfile));
-        System.out.println("====CipherText:====\n" + new String(bytOut));
+        System.out.println("====CipherText:====\n" + new String(bytOut) + '\n');
         bos.write(bytOut);
         bos.close();
     }
@@ -60,6 +63,13 @@ public class EncFile {
             stringBuffer.append(str.charAt(number));
         }
         return stringBuffer.toString();
+    }
+
+    public static byte[] byteMerger(byte[] byte_1, byte[] byte_2){
+        byte[] byte_3 = new byte[byte_1.length+byte_2.length];
+        System.arraycopy(byte_1, 0, byte_3, 0, byte_1.length);
+        System.arraycopy(byte_2, 0, byte_3, byte_1.length, byte_2.length);
+        return byte_3;
     }
 
 }

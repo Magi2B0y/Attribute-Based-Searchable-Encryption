@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Attribute-Based-Searchable-Encryption.iml" filepath="$PROJECT_DIR$/Attribute-Based-Searchable-Encryption.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DecFiles/DecFiles.iml" filepath="$PROJECT_DIR$/DecFiles/DecFiles.iml" />
     </modules>
   </component>
 </project>
