@@ -11,7 +11,7 @@ import java.util.Arrays;
 import index.Index;
 
 public class Bswabe {
-	private static String curveParams = "type a\n"
+	public static String curveParams = "type a\n"
 			+ "q 87807107996633125224377819847540498158068831994142082"
 			+ "1102865339926647563088022295707862517942266222142315585"
 			+ "8769582317459277713367317481324925129998224791\n"

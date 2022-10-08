@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="GBK">
-    <file url="file://$PROJECT_DIR$/src/demo/DecFile.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/demo/DemoForBswabe.java" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/scheme/Bswabe.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/demo/DecFile.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/demo/DemoForBswabe.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/scheme/Bswabe.java" charset="GBK" />
     <file url="PROJECT" charset="GBK" />
   </component>
 </project>

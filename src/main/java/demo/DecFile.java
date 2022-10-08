@@ -17,7 +17,7 @@ public class DecFile {
 
         String ivParameter = "AAAABBBBCCCCDDDD";
         try {
-            String PlainFile = "DownloadFiles\\plaintext.txt";
+            String PlainFile = "DownloadFiles\\1.txt";
             File file = new File(derectory + "\\" + "1.txt");
             decryptfile(file, ivParameter, PlainFile);
         } catch (Exception e) {

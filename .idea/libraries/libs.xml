@@ -3,7 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/libs/jpbc-plaf-1.2.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/libs/jpbc-api-1.2.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/fastjson-2.0.14.graal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/fastjson-1.2.72.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

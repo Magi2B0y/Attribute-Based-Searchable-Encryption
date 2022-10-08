@@ -1,6 +1,9 @@
 package demo;
 
+import java.awt.*;
 import java.io.*;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.Random;
 import javax.crypto.Cipher;
@@ -9,23 +12,27 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64.Encoder;
 
 public class EncFile {
+
     //实验操作路径
-    public static void main(String sourcetext) {
+    public static String main(String sourcetext) {
+        String EncFilePath = null;
         //key： 加密密钥
         String key = createRandomStr(32);
         System.out.println("key:" + key);
         //ivParameter：AES cbc加密模式的iv向量
         String ivParameter = "AAAABBBBCCCCDDDD";
         try {
-            String CipherFile = sourcetext.replace("SourceFiles", "UploadFiles");
+            String CipherDir = "UploadFiles";
             File file = new File(sourcetext);
-            encryptfile(file, key, ivParameter, CipherFile);
+            EncFilePath = encryptfile(file, key, ivParameter, CipherDir);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return EncFilePath;
+
     }
 
-    public static void encryptfile(File file, String key, String ivParameterm, String CipherFile) throws Exception {
+    public static String encryptfile(File file, String key, String ivParameterm, String CipherDir) throws Exception {
         //读取 file
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
         byte[] bytIn = new byte[(int) file.length()];
@@ -47,11 +54,18 @@ public class EncFile {
         byte[] BytesKey = key.getBytes("ASCII");
         bytOut = byteMerger(BytesKey,bytOut);
 
+        MessageDigest md = MessageDigest.getInstance("MD5");// 生成一个MD5加密计算摘要
+        md.update(bytOut);// 计算md5函数
+        String Filename = new BigInteger(1, md.digest()).toString(16);// 16是表示转换为16进制数
+        String CipherFile = CipherDir + "\\"+Filename;
+        System.out.println("CipherFile: " + CipherFile);
+
         File outfile = new File(CipherFile);
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outfile));
         System.out.println("====CipherText:====\n" + new String(bytOut) + '\n');
         bos.write(bytOut);
         bos.close();
+        return CipherFile;
     }
 
     public static String createRandomStr(int length) {
