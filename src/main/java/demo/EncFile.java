@@ -39,6 +39,12 @@ public class EncFile {
         bis.read(bytIn);
         System.out.println("====PlainText:====\n" + new String(bytIn));
         bis.close();
+
+        // hash文件名
+        MessageDigest md = MessageDigest.getInstance("MD5");// 生成一个MD5加密计算摘要
+        md.update(bytIn);// 计算md5函数
+        String Filename = new BigInteger(1, md.digest()).toString(16);// 16是表示转换为16进制数
+
         // AES加密
         byte[] raw = key.getBytes();
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
@@ -54,9 +60,6 @@ public class EncFile {
         byte[] BytesKey = key.getBytes("ASCII");
         bytOut = byteMerger(BytesKey,bytOut);
 
-        MessageDigest md = MessageDigest.getInstance("MD5");// 生成一个MD5加密计算摘要
-        md.update(bytOut);// 计算md5函数
-        String Filename = new BigInteger(1, md.digest()).toString(16);// 16是表示转换为16进制数
         String CipherFile = CipherDir + "\\"+Filename;
         System.out.println("CipherFile: " + CipherFile);
 

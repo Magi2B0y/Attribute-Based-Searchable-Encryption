@@ -37,17 +37,17 @@ public class Uploader {
         List<String> EncIndexes = new ArrayList<String>();
         Map dict = new HashMap();
 
-        for (int i = 0; i < all_indexes.length; i++) {
-            Index index = new Index(all_indexes[i], file);
-            Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入所有属性、公钥、主密钥
-            cph = Bswabe.enc(u, pub, policy, index);//开始加密；传入所有属性，公钥，访问策略，要加密的文件
-            System.out.println(cph.u_gate.getClass().getSimpleName());
-
-            //序列化
-            String jsonStr = JSON.toJSONString(cph, SerializerFeature.IgnoreNonFieldGetter);
-//            jsonStr = prettyJson(jsonStr);
-            System.out.println(jsonStr);
-            EncIndexes.add(jsonStr);
+//        for (int i = 0; i < all_indexes.length; i++) {
+//            Index index = new Index(all_indexes[i], file);
+//            Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入所有属性、公钥、主密钥
+//            cph = Bswabe.enc(u, pub, policy, index);//开始加密；传入所有属性，公钥，访问策略，要加密的文件
+//            System.out.println(cph.u_gate.getClass().getSimpleName());
+//
+//            //序列化
+//            String jsonStr = JSON.toJSONString(cph, SerializerFeature.IgnoreNonFieldGetter);
+////            jsonStr = prettyJson(jsonStr);
+//            System.out.println(jsonStr);
+//            EncIndexes.add(jsonStr);
 
             //反序列化
 //            TypeReference<BswabeCph> type = new TypeReference<BswabeCph>(Element.class){ };
@@ -58,7 +58,7 @@ public class Uploader {
 //            String jsonStr2 = JSON.toJSONString(stu, SerializerFeature.IgnoreNonFieldGetter);
 //            jsonStr2 = prettyJson(jsonStr2);
 //            System.out.println(jsonStr2);
-        }
+//        }
 
         List filelist = Arrays.asList(file);
         dict.put(EncIndexes, filelist);
