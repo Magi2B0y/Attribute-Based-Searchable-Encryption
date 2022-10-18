@@ -25,10 +25,10 @@ public class Uploader {
 
     public static void main(String[] args) throws Exception {
         //加密文件内容
-        for (int i = 0; i < file.length; i++) {
-            String EncFilePath = EncFile.main(file[i]);
-            file[i] = EncFilePath;
-        }
+//        for (int i = 0; i < file.length; i++) {
+//            String EncFilePath = EncFile.main(file[i]);
+//            file[i] = EncFilePath;
+//        }
 
 //        加密索引
         BswabePub pub = new BswabePub(); //A public key
@@ -37,32 +37,34 @@ public class Uploader {
         List<String> EncIndexes = new ArrayList<String>();
         Map dict = new HashMap();
 
-//        for (int i = 0; i < all_indexes.length; i++) {
-//            Index index = new Index(all_indexes[i], file);
-//            Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入所有属性、公钥、主密钥
-//            cph = Bswabe.enc(u, pub, policy, index);//开始加密；传入所有属性，公钥，访问策略，要加密的文件
-//            System.out.println(cph.u_gate.getClass().getSimpleName());
+        for (int i = 0; i < all_indexes.length; i++) {
+            Index index = new Index(all_indexes[i], file);
+            Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入所有属性、公钥、主密钥
+            cph = Bswabe.enc(u, pub, policy, index);//开始加密；传入所有属性，公钥，访问策略，要加密的索引
+            System.out.println("u_gate: " + cph.u_gate.getClass().getName());
+//            System.out.println("w: "+cph.w);
+//            System.out.println("w0: "+cph.w0);
 //
-//            //序列化
-//            String jsonStr = JSON.toJSONString(cph, SerializerFeature.IgnoreNonFieldGetter);
-////            jsonStr = prettyJson(jsonStr);
-//            System.out.println(jsonStr);
-//            EncIndexes.add(jsonStr);
+            //序列化
+            String jsonStr = JSON.toJSONString(cph, SerializerFeature.IgnoreNonFieldGetter);
+            jsonStr = prettyJson(jsonStr);
+            System.out.println(jsonStr);
+            EncIndexes.add(jsonStr);
 
             //反序列化
 //            TypeReference<BswabeCph> type = new TypeReference<BswabeCph>(Element.class){ };
 //            BswabeCph stu = JSON.parseObject(jsonStr, new TypeReference<BswabeCph>(){} );
 //            System.out.println(stu);
 
-            //验证
+            //验证反序列化是否成功
 //            String jsonStr2 = JSON.toJSONString(stu, SerializerFeature.IgnoreNonFieldGetter);
 //            jsonStr2 = prettyJson(jsonStr2);
 //            System.out.println(jsonStr2);
-//        }
+        }
 
-        List filelist = Arrays.asList(file);
-        dict.put(EncIndexes, filelist);
-        System.out.println(dict);
+//        List filelist = Arrays.asList(file);
+//        dict.put(EncIndexes, filelist);
+//        System.out.println(dict);
 
     }
 
