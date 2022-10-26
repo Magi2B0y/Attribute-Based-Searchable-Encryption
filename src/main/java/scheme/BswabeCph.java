@@ -2,7 +2,9 @@ package scheme;
 
 import it.unisa.dia.gas.jpbc.Element;
 
-public class BswabeCph {
+import java.io.Serializable;
+
+public class BswabeCph implements Serializable {
 	
 	public Element w; /* G_1 */
 	public Element w0; /* G_1 */

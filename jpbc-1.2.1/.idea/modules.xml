@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/jpbc-1.2.1.iml" filepath="$PROJECT_DIR$/.idea/jpbc-1.2.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-api/jpbc-api.iml" filepath="$PROJECT_DIR$/jpbc-api/jpbc-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-benchmark/jpbc-benchmark.iml" filepath="$PROJECT_DIR$/jpbc-benchmark/jpbc-benchmark.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-plaf/jpbc-plaf.iml" filepath="$PROJECT_DIR$/jpbc-plaf/jpbc-plaf.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-test/jpbc-test.iml" filepath="$PROJECT_DIR$/jpbc-test/jpbc-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-crypto/src/main/main.iml" filepath="$PROJECT_DIR$/jpbc-crypto/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-pbc/src/main/main1.iml" filepath="$PROJECT_DIR$/jpbc-pbc/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-pbc/src/test/test.iml" filepath="$PROJECT_DIR$/jpbc-pbc/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jpbc-crypto/src/test/test1.iml" filepath="$PROJECT_DIR$/jpbc-crypto/src/test/test1.iml" />
+    </modules>
+  </component>
+</project>

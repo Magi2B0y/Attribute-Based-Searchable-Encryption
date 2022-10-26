@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="test">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/jars/test/jpbc-test-1.2.1-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jars/test/jpbc-benchmark-1.2.1-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
