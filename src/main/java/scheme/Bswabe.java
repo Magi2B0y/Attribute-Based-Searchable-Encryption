@@ -1,12 +1,12 @@
 package scheme;
 import it.unisa.dia.gas.jpbc.CurveParameters;
 import it.unisa.dia.gas.jpbc.Element;
+
 import it.unisa.dia.gas.jpbc.Pairing;
 import it.unisa.dia.gas.plaf.jpbc.pairing.DefaultCurveParameters;
 import it.unisa.dia.gas.plaf.jpbc.pairing.PairingFactory;
 import java.io.ByteArrayInputStream;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+
 
 import index.Index;
 
@@ -36,7 +36,7 @@ public class Bswabe {
 		pub.pairingDesc = curveParams;
 		
 		pub.p = PairingFactory.getPairing(params);
-		Pairing pairing = pub.p;	
+		Pairing pairing = pub.p;
 		
 		//pub
 		pub.g1 = pairing.getG1().newRandomElement();
@@ -93,7 +93,7 @@ public class Bswabe {
 		
 		cph.w0 = pairing.getG1().newElement();
 		cph.w = pairing.getG1().newElement();
-		cph.u_gate = pairing.getG1().newElement();
+		cph.w1 = pairing.getG1().newElement();
 		
 		Element t1 = pairing.getZr().newRandomElement();
 		Element t2 = pairing.getZr().newRandomElement();		
@@ -115,16 +115,16 @@ public class Bswabe {
 		cph.w0.powZn(t1);			
 		cph.w = w01.duplicate();
 		cph.w.mul(w02.powZn(m));
-		cph.u_gate = pub.g1.duplicate();
-		cph.u_gate.powZn(t2);
+		cph.w1 = pub.g1.duplicate();
+		cph.w1.powZn(t2);
 		
 		
 		for(int i=0;i<u.length;i++){
 			if(isContain(policy,u[i])){
-				cph.u_gate.mul(pub.u[i]);
+				cph.w1.mul(pub.u[i]);
 			}
 			else{
-				cph.u_gate.mul(pub.u[i+u.length]);
+				cph.w1.mul(pub.u[i+u.length]);
 
 			}
 		}		
@@ -235,7 +235,7 @@ public class Bswabe {
 		Pairing pairing = pub.p;
 		Element E = pairing.getGT().newElement();
 		
-		E=pairing.pairing(cph.u_gate,token.tok3);
+		E=pairing.pairing(cph.w1,token.tok3);
 		E=E.mul(pairing.pairing(pub.g1, token.tok4));
 		E=E.div(token.tok5);
 		

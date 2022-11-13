@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="jpbc-api:jar">
-    <output-path>$PROJECT_DIR$/../../jpbc_api_jar</output-path>
-    <root id="archive" name="jpbc-api.jar">
-      <element id="module-output" name="jpbc-api" />
-    </root>
-  </artifact>
-</component>

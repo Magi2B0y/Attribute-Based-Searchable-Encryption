@@ -3,7 +3,9 @@ package scheme;
 import it.unisa.dia.gas.jpbc.Element;
 import it.unisa.dia.gas.jpbc.Pairing;
 
-public class BswabePub{
+import java.io.Serializable;
+
+public class BswabePub implements Serializable {
 	/*
 	 * A public key
 	 */

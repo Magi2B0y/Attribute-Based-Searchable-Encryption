@@ -1,6 +1,5 @@
 package demo;
 
-import java.awt.*;
 import java.io.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -88,5 +87,4 @@ public class EncFile {
         System.arraycopy(byte_2, 0, byte_3, byte_1.length, byte_2.length);
         return byte_3;
     }
-
 }

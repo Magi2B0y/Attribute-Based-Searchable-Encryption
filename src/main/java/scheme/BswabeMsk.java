@@ -2,7 +2,9 @@ package scheme;
 
 import it.unisa.dia.gas.jpbc.Element;
 
-public class BswabeMsk {
+import java.io.Serializable;
+
+public class BswabeMsk implements Serializable {
 	/*
 	 * A master secret key
 	 */

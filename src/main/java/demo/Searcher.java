@@ -2,31 +2,46 @@
 package demo;
 import scheme.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Searcher {
     final static String[] u = {"ECNU", "teacher", "doctor", "master", "bachelor", "2016", "2015", "2014"};
     final static String[] attrs = {"ECNU", "teacher"};//用户上传
-    final static String[] words = {"2","6","7"};
-    private static boolean fileLog = true;
-    private static String logFileName = "E:/DeskDocument/1.txt";//指定程序执行结果保存的文件路径
+    final static String[] words = {"4"};
 
     public static void main(String[] args) throws Exception {
         BswabePub pub = new BswabePub(); //A public key
         BswabeMsk msk = new BswabeMsk();//A master secret key
         BswabePrv prv;//A private key
         BswabeToken token;//token
-        List<BswabeToken> tokens = new ArrayList<BswabeToken>();
 
-        for (int i = 0; i < words.length; i++) {
-            Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入所有属性、公钥、主密钥
-            prv = Bswabe.keygen(u, pub, msk, attrs);//生成私钥；传入所有属性，公钥，主密钥，搜索用户属性，这里只用了u的length
-            token = Bswabe.tokgen(prv, pub, words[i]);//生成 token， 传入私钥，公钥，要搜索的关键字
-            System.out.println(token);
-            tokens.add(token);
-        }
-        System.out.println(tokens);
+        FileInputStream fileIn = new FileInputStream("./tmp/Pub.ser");
+        ObjectInputStream pubin = new ObjectInputStream(fileIn);
+        pub = (BswabePub) pubin.readObject();
+        pubin.close();
+
+        FileInputStream fileIn2 = new FileInputStream("./tmp/Msk.ser");
+        ObjectInputStream mskin = new ObjectInputStream(fileIn2);
+        msk = (BswabeMsk) mskin.readObject();
+        mskin.close();
+
+        prv = Bswabe.keygen(u, pub, msk, attrs);//生成私钥；传入所有属性，公钥，主密钥，搜索用户属性，这里只用了u的length
+        token = Bswabe.tokgen(prv, pub, words[0]);//生成 token， 传入私钥，公钥，要搜索的关键字
+
+        FileOutputStream fileOut = new FileOutputStream("./tmp/UserToken.ser");
+        ObjectOutputStream TokenOut = new ObjectOutputStream(fileOut);
+        TokenOut.writeObject(token);
+        TokenOut.flush();
+        TokenOut.close();
+        System.out.println("UserToken.ser over");
+
+        //验证
+//        FileInputStream fileIn = new FileInputStream("./tmp/UserToken.ser");
+//        ObjectInputStream in = new ObjectInputStream(fileIn);
+//        BswabeToken o = (BswabeToken) in.readObject();
+//        in.close();
+//        System.out.println(o.tok1);
+
+
     }
 
 }
