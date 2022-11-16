@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Attribute-Based-Searchable-Encryption" target="11" />
+      <module name="Attribute-Based-Searchable-Encryption" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

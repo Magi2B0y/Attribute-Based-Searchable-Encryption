@@ -13,7 +13,7 @@ public class DemoForBswabe {
 	final static boolean DEBUG = true;
 	/*final static String inputfile = "F://dataEclipse/keyword.txt";
 	final static String encfile = "F://dataEclipse/cipher.txt";
-	final static String decfile = "F://dataEclipse/result.txt";//输出搜索结果：文件的id或者TRUE/false
+	final static String decfile = "F://dataEclipse/result.txt";//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥硷拷锟斤拷id锟斤拷锟斤拷TRUE/false
 */
 
 	//universal attribute set, any attribute is in u.
@@ -21,11 +21,11 @@ public class DemoForBswabe {
 	//attributes of the user
 	final static String []attrs = {"ECNU","teacher"};
 	//attributes of the policy
-	final static String []policy = {"ECNU","teacher"};
-	final static String []file = {"E:\\DeskDocument\\Attribute-Based-Searchable-Encryption\\files\\1.txt","E:\\DeskDocument\\Attribute-Based-Searchable-Encryption\\files\\2.txt"};//包含关键字的所有文件
+	final static String []policy = {"teacher","ECNU"};
+	final static String []file = {"E:\\DeskDocument\\Attribute-Based-Searchable-Encryption\\files\\1.txt","E:\\DeskDocument\\Attribute-Based-Searchable-Encryption\\files\\2.txt"};//锟斤拷锟斤拷锟截硷拷锟街碉拷锟斤拷锟斤拷锟侥硷拷
 	final static String words = "4";
-	final static Index index = new Index(words,file); //文件倒排索引，word - file []
-	final static String word = "4";//要搜索的部分
+	final static Index index = new Index(words,file);
+	final static String word = "4";
 
 
 	public static void main(String[] args) throws Exception {
@@ -38,7 +38,7 @@ public class DemoForBswabe {
 
 		println("//demo for bswabe: start to setup");
 
-		Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入用户属性、公钥、主密钥
+		Bswabe.setup(u, pub, msk);
 
 //		for(int i=0;i<u.length;i++){
 //			System.out.println(u[i]);
@@ -48,17 +48,17 @@ public class DemoForBswabe {
 		println("//demo for bswabe: end to setup");
 
 		println("\n//demo for bswabe: start to enc");
-		cph = Bswabe.enc(u,pub, policy, index);//开始加密；传入用户属性，公钥，访问策略，要加密的文件
+		cph = Bswabe.enc(u,pub, policy, index);
 		System.out.println(index);
 		println("//demo for bswabe: end to enc");
 
 		println("\n//demo for bswabe: start to keygen");
-		prv = Bswabe.keygen(u,pub, msk, attrs);//生成私钥；传入用户属性，公钥，主密钥，访问策略
+		prv = Bswabe.keygen(u,pub, msk, attrs);
 //		System.out.println(prv);
 		println("//demo for bswabe: end to keygen");
 
 		println("\n//demo for bswabe: start to tokengen");
-		token = Bswabe.tokgen(prv,pub,word);//生成 token， 传入私钥，公钥，要搜索的关键字
+		token = Bswabe.tokgen(prv,pub,word);
 //		System.out.println(token);
 		println("\n//demo for bswabe: end to tokengen");
 
@@ -67,7 +67,7 @@ public class DemoForBswabe {
 //		System.out.println(result);
 		println("//demo for bswabe: end to dec");
 
-		if (result){//搜索成功
+		if (result){
 			String []fileReturned = index.file;
 			for(int i=0;i<fileReturned.length;i++)
 				System.out.print(fileReturned[i]+" ");

@@ -14,12 +14,12 @@ public class Searcher {
         BswabePrv prv;//A private key
         BswabeToken token;//token
 
-        FileInputStream fileIn = new FileInputStream("./tmp/Pub.ser");
+        FileInputStream fileIn = new FileInputStream("./tmp/SearchableEncryption/Pub.ser");
         ObjectInputStream pubin = new ObjectInputStream(fileIn);
         pub = (BswabePub) pubin.readObject();
         pubin.close();
 
-        FileInputStream fileIn2 = new FileInputStream("./tmp/Msk.ser");
+        FileInputStream fileIn2 = new FileInputStream("./tmp/SearchableEncryption/Msk.ser");
         ObjectInputStream mskin = new ObjectInputStream(fileIn2);
         msk = (BswabeMsk) mskin.readObject();
         mskin.close();
@@ -27,7 +27,7 @@ public class Searcher {
         prv = Bswabe.keygen(u, pub, msk, attrs);//生成私钥；传入所有属性，公钥，主密钥，搜索用户属性，这里只用了u的length
         token = Bswabe.tokgen(prv, pub, words[0]);//生成 token， 传入私钥，公钥，要搜索的关键字
 
-        FileOutputStream fileOut = new FileOutputStream("./tmp/UserToken.ser");
+        FileOutputStream fileOut = new FileOutputStream("./tmp/SearchableEncryption/UserToken.ser");
         ObjectOutputStream TokenOut = new ObjectOutputStream(fileOut);
         TokenOut.writeObject(token);
         TokenOut.flush();

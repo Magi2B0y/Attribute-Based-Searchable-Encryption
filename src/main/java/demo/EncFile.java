@@ -10,10 +10,12 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64.Encoder;
 
+import static demo.cpabeEnc.cpabeEncAPI;
+
 public class EncFile {
 
     //实验操作路径
-    public static String main(String sourcetext) {
+    public static String EncFileAPI(String sourcetext, String[] policy) {
         String EncFilePath = null;
         //key： 加密密钥
         String key = createRandomStr(32);
@@ -23,7 +25,7 @@ public class EncFile {
         try {
             String CipherDir = "UploadFiles";
             File file = new File(sourcetext);
-            EncFilePath = encryptfile(file, key, ivParameter, CipherDir);
+            EncFilePath = encryptfile(file, key, policy, ivParameter, CipherDir);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -31,7 +33,7 @@ public class EncFile {
 
     }
 
-    public static String encryptfile(File file, String key, String ivParameterm, String CipherDir) throws Exception {
+    public static String encryptfile(File file, String key, String[] policy, String ivParameterm, String CipherDir) throws Exception {
         //读取 file
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(file));
         byte[] bytIn = new byte[(int) file.length()];
@@ -51,20 +53,24 @@ public class EncFile {
         IvParameterSpec iv = new IvParameterSpec(ivParameterm.getBytes());
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
 
-        // 写入CipherFile
-        byte[] bytOut = cipher.doFinal(bytIn);
-        Encoder encoder = Base64.getEncoder();
-        bytOut = encoder.encode(bytOut);
-        key = key + "\r\n";
-        byte[] BytesKey = key.getBytes("ASCII");
-        bytOut = byteMerger(BytesKey,bytOut);
-
         String CipherFile = CipherDir + "\\"+Filename;
         System.out.println("CipherFile: " + CipherFile);
-
         File outfile = new File(CipherFile);
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(outfile));
-        System.out.println("====CipherText:====\n" + new String(bytOut) + '\n');
+
+        // 写入CipherFile
+        byte[] bytOut = cipher.doFinal(bytIn);
+        Base64.Encoder encoder = Base64.getEncoder();
+        bytOut = encoder.encode(bytOut);
+
+        byte[] Enckey = cpabeEncAPI(key,policy);
+        Base64.Encoder encoder2 = Base64.getEncoder();
+        Enckey = encoder2.encode(Enckey);
+        key = new String(Enckey) + "\r\n";
+        byte[] BytesKey = key.getBytes("UTF-8");
+        bos.write(BytesKey);
+
+//        System.out.println("====CipherText:====\n" + new String(bytOut) + '\n');
         bos.write(bytOut);
         bos.close();
         return CipherFile;
@@ -81,10 +87,4 @@ public class EncFile {
         return stringBuffer.toString();
     }
 
-    public static byte[] byteMerger(byte[] byte_1, byte[] byte_2){
-        byte[] byte_3 = new byte[byte_1.length+byte_2.length];
-        System.arraycopy(byte_1, 0, byte_3, 0, byte_1.length);
-        System.arraycopy(byte_2, 0, byte_3, byte_1.length, byte_2.length);
-        return byte_3;
-    }
 }

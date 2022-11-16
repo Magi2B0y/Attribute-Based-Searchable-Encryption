@@ -1,12 +1,9 @@
 <component name="libraryTable">
   <library name="libs">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/jpbc-plaf-1.2.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/libs/fastjson-1.2.72.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/cpabe-api.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/libs/jpbc-plaf-1.2.1.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

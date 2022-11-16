@@ -1,53 +1,45 @@
 package demo;
-import scheme.BswabeCph;
-/**
- * @author ZSL
- * @since 2016年12月7日上午10:18:27
- * @desc [文件加密]
- */
-import java.io.*;
 
 
-public class test
-{    public static void main(String[] args)
-    {
-        Employee e = new Employee();
-        e.name = "Reyan Ali";
-        e.address = "Phokka Kuan, Ambehta Peer";
-        e.SSN = 11122333;
-        e.number = 101;
-        try
-        {
-//            FileInputStream fileIn = new FileInputStream("/tmp/employee.ser");
-//            ObjectInputStream in = new ObjectInputStream(fileIn);
-//            e = (Employee) in.readObject();
-//            in.close();
-//            fileIn.close();
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
+public class test {
+    public static void main(String[] args) throws IOException {
+        String encfile = "tmp/cpabe/enc_AESkey.ser";
+        int i, len;
+        InputStream is = new FileInputStream(encfile);
+        byte[][] res = new byte[2][];
+        byte[] aesBuf, cphBuf;
 
-            FileOutputStream fileOut = new FileOutputStream("./employee.ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(e);
-            out.close();
-            fileOut.close();
-            System.out.printf("Serialized data is saved in /tmp/employee.ser");
-        }catch(IOException i)
-        {
-            i.printStackTrace();
+        /* read aes buf */
+        len = 0;
+        for (i = 3; i >= 0; i--) {
+            System.out.println(is.read());
+            len |= is.read() << (i * 8);
         }
+        aesBuf = new byte[len];
+        is.read(aesBuf);
+        /* read cph buf */
+        len = 0;
+        for (i = 3; i >= 0; i--)
+            len |= is.read() << (i * 8);
+        cphBuf = new byte[len];
+
+        is.read(cphBuf);
+
+        is.close();
+
+        res[0] = aesBuf;
+        res[1] = cphBuf;
+
+        System.out.println(new String(aesBuf));
+        System.out.println("=============");
+        System.out.println(new String(cphBuf));
+
+
     }
 
 
-}
-class Employee implements java.io.Serializable
-{
-    public String name;
-    public String address;
-    public transient int SSN;
-    public int number;
-    public void mailCheck()
-    {
-        System.out.println("Mailing a check to " + name
-                + " " + address);
-    }
 }

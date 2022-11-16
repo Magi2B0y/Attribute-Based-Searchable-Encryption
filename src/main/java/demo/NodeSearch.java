@@ -15,17 +15,17 @@ public class NodeSearch {
         BswabeToken token;//token
         BswabeCph cph;//public BswabePolicy p
 
-        FileInputStream fileIn = new FileInputStream("./tmp/Pub.ser");
+        FileInputStream fileIn = new FileInputStream("./tmp/SearchableEncryption/Pub.ser");
         ObjectInputStream pubin = new ObjectInputStream(fileIn);
         pub = (BswabePub) pubin.readObject();
         pubin.close();
 
-        FileInputStream fileIn1 = new FileInputStream("./tmp/InvertedIndex.ser");
+        FileInputStream fileIn1 = new FileInputStream("./tmp/SearchableEncryption/InvertedIndex.ser");
         ObjectInputStream in1 = new ObjectInputStream(fileIn1);
         cph = (BswabeCph) in1.readObject();
         in1.close();
 
-        FileInputStream fileIn2 = new FileInputStream("./tmp/UserToken.ser");
+        FileInputStream fileIn2 = new FileInputStream("./tmp/SearchableEncryption/UserToken.ser");
         ObjectInputStream in2 = new ObjectInputStream(fileIn2);
         token = (BswabeToken) in2.readObject();
         in2.close();
