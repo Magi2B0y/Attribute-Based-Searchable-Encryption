@@ -20,7 +20,7 @@ public class DecFile {
         File dir = new File(DirName);
         String[] children = dir.list();
 
-        for (int i = 3; i < 4; i++) {
+        for (int i = 0; i < children.length; i++) {
             try {
                 String PlainFile = "DownloadFiles\\" + children[i];
                 String encfile = DirName + "\\" + children[i];
