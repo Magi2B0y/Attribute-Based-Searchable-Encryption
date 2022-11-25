@@ -15,7 +15,7 @@ import static demo.EncFile.EncFileAPI;
 public class Uploader {
     final static String[] u = {"ECNU", "teacher", "doctor", "master", "bachelor", "2016", "2015", "2014"};
     final static String[] policy = {"ECNU", "teacher"};
-    final static String[] files = {"SourceFiles\\4.jpg"};//包含关键字的所有文件
+    final static String[] files = {"SourceFiles\\4.jpg","SourceFiles\\1.txt"};//包含关键字的所有文件
     final static String FilesIndex = "4";
 
     public static void main(String[] args) throws Exception {
