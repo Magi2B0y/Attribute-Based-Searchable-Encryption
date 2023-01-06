@@ -19,12 +19,12 @@ public class Bswabe {
 			+ "822919615131047207289359704531102844802183906537786776\n"
 			+ "r 730750818665451621361119245571504901405976559617\n"
 			+ "exp2 159\n" + "exp1 107\n" + "sign1 1\n" + "sign0 1\n";
-	//曲线参数
+
 
 	public static void setup(String []u,BswabePub pub, BswabeMsk msk) {
 		
 //		System.out.println("---setup phase---");
-		int n = u.length; //用户属性的长度
+		int n = u.length; //锟矫伙拷锟斤拷锟皆的筹拷锟斤拷
 		Element a,b,c;
 		msk.r = new Element[2*n]; /* Z_r */
 		msk.x = new Element[2*n];/*G_1*/
@@ -95,10 +95,12 @@ public class Bswabe {
 		cph.w = pairing.getG1().newElement();
 		cph.w1 = pairing.getG1().newElement();
 		
-		Element t1 = pairing.getZr().newRandomElement();
-		Element t2 = pairing.getZr().newRandomElement();		
-		Element m=pairing.getZr().newElement();//要加密的元素,将字符串映射到z上
-		
+//		Element t1 = pairing.getZr().newRandomElement();
+//		Element t2 = pairing.getZr().newRandomElement();
+		Element t1 = pairing.getZr().newElement();
+		Element t2 = pairing.getZr().newElement();
+		Element m=pairing.getZr().newElement();
+
 		Element add = t1.duplicate();
 		add.add(t2);
 		Element w01 = pub.g_a.duplicate();
@@ -109,8 +111,7 @@ public class Bswabe {
 		//Index indTemp;
 		byte []ind = index.word.getBytes();
 		m=m.setFromHash(ind, 0, ind.length);
-		
-		
+
 		cph.w0 = pub.g_c.duplicate();
 		cph.w0.powZn(t1);			
 		cph.w = w01.duplicate();
@@ -127,7 +128,7 @@ public class Bswabe {
 				cph.w1.mul(pub.u[i+u.length]);
 
 			}
-		}		
+		}
 
 		return cph;
 	}
@@ -206,7 +207,7 @@ public class Bswabe {
 			
 		Element s = pairing.getZr().newElement();
 		s.setToRandom();
-		Element wm = pairing.getZr().newElement();//要加密的关键字
+		Element wm = pairing.getZr().newElement();//要锟斤拷锟杰的关硷拷锟斤拷
 		byte []w = word.getBytes();
 		wm = wm.setFromHash(w, 0, w.length);
 		
@@ -249,8 +250,7 @@ public class Bswabe {
 		if(left.equals(right)){
 			ret = true;			
 
-		}			
-				
+		}
 		return ret;		
 	}
 }

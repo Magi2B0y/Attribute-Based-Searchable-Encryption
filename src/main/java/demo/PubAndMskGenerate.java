@@ -13,7 +13,7 @@ public class PubAndMskGenerate {
         BswabePub pub = new BswabePub(); //A public key
         BswabeMsk msk = new BswabeMsk();//A master secret key
 
-        Bswabe.setup(u, pub, msk);// 生成公钥、主密钥；传入用户属性、公钥、主密钥
+        Bswabe.setup(u, pub, msk);
 
         FileOutputStream fileOut1 = new FileOutputStream("./tmp/Pub.ser");
         ObjectOutputStream PubOut = new ObjectOutputStream(fileOut1);

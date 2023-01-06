@@ -92,9 +92,11 @@ public class Bswabe {
 		cph.w0 = pairing.getG1().newElement();
 		cph.w = pairing.getG1().newElement();
 		cph.w1 = pairing.getG1().newElement();
-		
-		Element t1 = pairing.getZr().newRandomElement();
-		Element t2 = pairing.getZr().newRandomElement();		
+
+		Element t1 = pairing.getZr().newElement();
+		Element t2 = pairing.getZr().newElement();
+//		Element t1 = pairing.getZr().newRandomElement();
+//		Element t2 = pairing.getZr().newRandomElement();
 		Element m=pairing.getZr().newElement();
 		
 		Element add = t1.duplicate();

@@ -6,11 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Sourcecode" />
+        <module name="Sourcrcode" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Sourcecode" target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="Sourcrcode" target="11" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Sourcrcode" options="" />
+    </option>
   </component>
 </project>
